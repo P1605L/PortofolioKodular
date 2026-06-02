@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <title>Piere Saputra Ladasi | Mobile Dev & UI/UX</title>
+    <!-- TailwindCSS + Font Awesome + Google Fonts + AOS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        body {
+            background: linear-gradient(145deg, #f8fafc 0%, #eef2ff 100%);
+            scroll-behavior: smooth;
+        }
+        /* Custom glassmorphism */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(255,255,255,0.6);
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255,255,255,0.8);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #1E2A5E, #556B9D, #7C93C3);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 6s linear infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+        .avatar-border {
+            background: linear-gradient(135deg, #1E2A5E, #99B2DD);
+            padding: 4px;
+            border-radius: 50%;
+            display: inline-block;
+            animation: subtle-rotate 8s infinite ease-in-out;
+        }
+        @keyframes subtle-rotate {
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(4deg); }
+            100% { transform: rotate(0deg); }
+        }
+        .skill-chip {
+            transition: all 0.2s ease;
+        }
+        .skill-chip:hover {
+            transform: translateY(-3px);
+            background: #1E2A5E;
+            color: white;
+            box-shadow: 0 10px 20px -7px #1E2A5E60;
+        }
+        .project-card {
+            transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.3s;
+        }
+        .project-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 30px 40px -20px rgba(0,0,0,0.2);
+        }
+        .btn-modern {
+            background: linear-gradient(100deg, #1e293b, #2d3a5e);
+            transition: all 0.2s;
+        }
+        .btn-modern:hover {
+            background: linear-gradient(100deg, #0f172a, #1e2a5e);
+            transform: scale(0.98);
+            box-shadow: 0 12px 20px -12px #1e2a5e;
+        }
+        /* Smooth scroll offset */
+        html {
+            scroll-padding-top: 80px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation Modern -->
+    <nav class="fixed top-0 left-0 w-full z-50 glass-nav py-4 px-6 md:px-12 transition-all duration-300">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold tracking-tight">
+                <span class="gradient-text">Piere.</span>
+            </div>
+            <div class="hidden md:flex space-x-8 text-gray-700 font-medium">
+                <a href="#home" class="hover:text-[#1E2A5E] transition">Beranda</a>
+                <a href="#skills" class="hover:text-[#1E2A5E] transition">Keahlian</a>
+                <a href="#projects" class="hover:text-[#1E2A5E] transition">Proyek</a>
+                <a href="#contact" class="hover:text-[#1E2A5E] transition">Kontak</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-btn" class="text-2xl text-gray-700 focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden flex-col bg-white/90 backdrop-blur-lg rounded-2xl mt-4 py-4 px-6 space-y-3 shadow-xl">
+            <a href="#home" class="block py-2 text-gray-800 font-medium">Beranda</a>
+            <a href="#skills" class="block py-2 text-gray-800 font-medium">Keahlian</a>
+            <a href="#projects" class="block py-2 text-gray-800 font-medium">Proyek</a>
+            <a href="#contact" class="block py-2 text-gray-800 font-medium">Kontak</a>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-5 md:px-8 pt-28 pb-20">
+
+        <!-- Hero Section -->
+        <section id="home" class="flex flex-col md:flex-row items-center gap-12 md:gap-16 mb-32" data-aos="fade-up" data-aos-duration="1000">
+            <div class="flex-1 text-center md:text-left order-2 md:order-1">
+                <div class="inline-block px-4 py-1.5 rounded-full bg-white/60 backdrop-blur-sm text-sm font-semibold text-[#1E2A5E] border border-white/50 mb-5" data-aos="fade-right">
+                    <i class="fas fa-mobile-alt mr-1"></i> Mobile Dev & UI/UX
+                </div>
+                <h1 class="text-5xl md:text-7xl font-extrabold leading-tight tracking-tight">
+                    Piere <span class="gradient-text">Saputra Ladasi</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 mt-6 max-w-lg mx-auto md:mx-0 leading-relaxed">
+                    Menciptakan pengalaman mobile yang memukau, antarmuka intuitif, dan kode berkualitas tinggi.
+                </p>
+                <div class="flex flex-wrap gap-4 mt-8 justify-center md:justify-start">
+                    <a href="#projects" class="px-6 py-3 btn-modern text-white rounded-full shadow-lg flex items-center gap-2">
+                        Lihat Karya <i class="fas fa-arrow-right text-sm"></i>
+                    </a>
+                    <a href="#contact" class="px-6 py-3 bg-white/70 backdrop-blur border border-gray-300 rounded-full text-gray-700 hover:bg-white transition shadow-sm">
+                        Hubungi Saya
+                    </a>
+                </div>
+                <div class="flex gap-5 mt-10 justify-center md:justify-start">
+                    <a href="#" class="text-2xl text-gray-600 hover:text-[#1E2A5E] transition"><i class="fab fa-github"></i></a>
+                    <a href="#" class="text-2xl text-gray-600 hover:text-[#1E2A5E] transition"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="text-2xl text-gray-600 hover:text-[#1E2A5E] transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-2xl text-gray-600 hover:text-[#1E2A5E] transition"><i class="fab fa-dribbble"></i></a>
+                </div>
+            </div>
+            <div class="flex-1 flex justify-center order-1 md:order-2" data-aos="zoom-in" data-aos-duration="1200">
+                <div class="avatar-border rounded-full shadow-2xl">
+                    <!-- Ganti foto di bawah dengan foto asli Anda (ganti src) -->
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Foto Piere Saputra Ladasi" class="w-52 h-52 md:w-64 md:h-64 rounded-full object-cover border-4 border-white">
+                </div>
+                <!-- Catatan: Ganti link foto di atas dengan file lokal atau gambar Anda. 
+                Misalnya: src="assets/foto-saya.jpg" atau URL gambar Anda -->
+            </div>
+        </section>
+
+        <!-- Keahlian / Skills Section -->
+        <section id="skills" class="mb-32" data-aos="fade-up" data-aos-duration="800">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800">Keahlian <span class="gradient-text">Profesional</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-[#1E2A5E] to-[#99B2DD] mx-auto mt-3 rounded-full"></div>
+                <p class="text-gray-500 max-w-2xl mx-auto mt-4">Teknologi & tools yang saya kuasai untuk menciptakan aplikasi mobile modern.</p>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
+                <div class="glass-card p-5 text-center skill-chip cursor-pointer transition-all" data-aos="flip-left" data-aos-delay="100"><i class="fab fa-react text-4xl text-[#1E2A5E] mb-2 block"></i><span class="font-semibold">React Native</span></div>
+                <div class="glass-card p-5 text-center skill-chip cursor-pointer transition-all" data-aos="flip-left" data-aos-delay="150"><i class="fab fa-swift text-4xl text-[#1E2A5E] mb-2 block"></i><span class="font-semibold">Swift / iOS</span></div>
+                <div class="glass-card p-5 text-center skill-chip cursor-pointer transition-all" data-aos="flip-left" data-aos-delay="200"><i class="fab fa-android text-4xl text-[#1E2A5E] mb-2 block"></i><span class="font-semibold">Kotlin</span></div>
+                <div class="glass-card p-5 text-center skill-chip cursor-pointer transition-all" data-aos="flip-left" data-aos-delay="250"><i class="fas fa-paint-brush text-4xl text-[#1E2A5E] mb-2 block"></i><span class="font-semibold">Figma / UI UX</span></div>
+                <div class="glass-card p-5 text-center skill-chip cursor-pointer transition-all" data-aos="flip-left" data-aos-delay="300"><i class="fab fa-js text-4xl text-[#1E2A5E] mb-2 block"></i><span class="font-semibold">JavaScript/TS</span></div>
+                <div class="glass-card p-5 text-center skill-chip cursor-pointer transition-all" data-aos="flip-left" data-aos-delay="350"><i class="fas fa-database text-4xl text-[#1E2A5E] mb-2 block"></i><span class="font-semibold">Firebase</span></div>
+                <div class="glass-card p-5 text-center skill-chip cursor-pointer transition-all" data-aos="flip-left" data-aos-delay="400"><i class="fab fa-figma text-4xl text-[#1E2A5E] mb-2 block"></i><span class="font-semibold">Prototyping</span></div>
+                <div class="glass-card p-5 text-center skill-chip cursor-pointer transition-all" data-aos="flip-left" data-aos-delay="450"><i class="fas fa-code-branch text-4xl text-[#1E2A5E] mb-2 block"></i><span class="font-semibold">Git & CI/CD</span></div>
+            </div>
+        </section>
+
+        <!-- Proyek Unggulan -->
+        <section id="projects" class="mb-32">
+            <div class="text-center mb-14" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800">Proyek <span class="gradient-text">Unggulan</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-[#1E2A5E] to-[#99B2DD] mx-auto mt-3 rounded-full"></div>
+                <p class="text-gray-500 mt-4">Aplikasi mobile modern dengan sentuhan UI/UX yang inovatif.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-card overflow-hidden project-card transition-all" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-48 bg-gradient-to-br from-indigo-200 to-blue-300 flex items-center justify-center">
+                        <i class="fas fa-wallet text-6xl text-white drop-shadow-lg"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold">FinWise</h3>
+                        <p class="text-gray-500 text-sm mt-1">Mobile banking & expense tracker</p>
+                        <p class="text-gray-600 mt-3">Aplikasi manajemen keuangan pribadi dengan animasi realtime, chart interaktif, dan keamanan biometrik.</p>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="text-xs bg-gray-200 px-3 py-1 rounded-full">React Native</span>
+                            <span class="text-xs bg-gray-200 px-3 py-1 rounded-full">UI/UX Modern</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="glass-card overflow-hidden project-card transition-all" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-48 bg-gradient-to-br from-rose-200 to-orange-200 flex items-center justify-center">
+                        <i class="fas fa-store text-6xl text-white drop-shadow-lg"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold">MarketPlaceX</h3>
+                        <p class="text-gray-500 text-sm mt-1">E-commerce app with AR try-on</p>
+                        <p class="text-gray-600 mt-3">Pengalaman belanja imersif dengan filter produk, wishlist, dan integrasi pembayaran modern.</p>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="text-xs bg-gray-200 px-3 py-1 rounded-full">Flutter</span>
+                            <span class="text-xs bg-gray-200 px-3 py-1 rounded-full">Firebase</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="glass-card overflow-hidden project-card transition-all" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-48 bg-gradient-to-br from-emerald-200 to-teal-200 flex items-center justify-center">
+                        <i class="fas fa-notes-medical text-6xl text-white drop-shadow-lg"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold">MediCare+</h3>
+                        <p class="text-gray-500 text-sm mt-1">Telemedicine & appointment</p>
+                        <p class="text-gray-600 mt-3">Aplikasi kesehatan dengan video call, resep digital, dan notifikasi cerdas untuk jadwal dokter.</p>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="text-xs bg-gray-200 px-3 py-1 rounded-full">SwiftUI</span>
+                            <span class="text-xs bg-gray-200 px-3 py-1 rounded-full">UIKit</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimoni atau Quote Desain -->
+        <div class="glass-card p-8 md:p-12 mb-32 text-center" data-aos="zoom-in-up">
+            <i class="fas fa-quote-left text-4xl text-[#1E2A5E] opacity-40"></i>
+            <p class="text-xl md:text-2xl font-medium italic text-gray-700 max-w-3xl mx-auto">"Mendesain bukan hanya tentang tampilan, tapi bagaimana ia berinteraksi dengan manusia. Mobile dev adalah jembatan antara ide dan kenyamanan."</p>
+            <p class="mt-6 font-bold text-gray-800">— Piere Saputra Ladasi — <span class="text-sm font-normal text-gray-500">Mobile Developer & UI/UX Designer</span></p>
+        </div>
+
+        <!-- Kontak & Sosial Media -->
+        <section id="contact" class="mb-20" data-aos="fade-up" data-aos-duration="900">
+            <div class="glass-card p-8 md:p-12 text-center max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Kolaborasi <span class="gradient-text">Bersama</span></h2>
+                <p class="text-gray-500 mt-3">Tertarik untuk membuat aplikasi impian Anda? Mari terhubung.</p>
+                <div class="flex flex-wrap justify-center gap-5 mt-8">
+                    <a href="mailto:piere@example.com" class="bg-white/80 p-4 rounded-2xl shadow-sm flex items-center gap-3 px-6 transition hover:shadow-md">
+                        <i class="fas fa-envelope text-2xl text-[#1E2A5E]"></i>
+                        <span class="font-medium">piere.saputra@dev.id</span>
+                    </a>
+                    <a href="#" class="bg-white/80 p-4 rounded-2xl shadow-sm flex items-center gap-3 px-6 transition hover:shadow-md">
+                        <i class="fab fa-whatsapp text-2xl text-green-600"></i>
+                        <span class="font-medium">+62 812 3456 7890</span>
+                    </a>
+                </div>
+                <div class="mt-10 flex justify-center space-x-6 text-gray-500">
+                    <a href="#" class="hover:text-[#1E2A5E] text-3xl transition"><i class="fab fa-github"></i></a>
+                    <a href="#" class="hover:text-[#1E2A5E] text-3xl transition"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="hover:text-[#1E2A5E] text-3xl transition"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-[#1E2A5E] text-3xl transition"><i class="fab fa-behance"></i></a>
+                </div>
+                <div class="mt-8 pt-6 border-t border-gray-200 text-gray-400 text-sm">
+                    <i class="far fa-copyright"></i> 2026 Piere Saputra Ladasi — Mobile Dev & UI/UX Designer
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Tombol Scroll ke Atas -->
+    <button id="scrollTopBtn" class="fixed bottom-8 right-6 bg-[#1E2A5E] text-white p-3 rounded-full shadow-lg opacity-0 transition-opacity duration-300 z-50 hover:bg-[#0f172a]">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Script AOS + Interaksi Mobile -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Inisialisasi AOS untuk animasi scroll
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 80,
+        });
+
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if(menuBtn) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Close menu saat klik link
+        const mobileLinks = document.querySelectorAll('#mobile-menu a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Scroll to Top Button
+        const scrollBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            if(window.scrollY > 500) {
+                scrollBtn.style.opacity = '1';
+            } else {
+                scrollBtn.style.opacity = '0';
+            }
+        });
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Efek navbar transparan berubah saat scroll
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if(window.scrollY > 20) {
+                nav.classList.add('shadow-md');
+                nav.style.background = 'rgba(255,255,255,0.85)';
+            } else {
+                nav.classList.remove('shadow-md');
+                nav.style.background = 'rgba(255,255,255,0.75)';
+            }
+        });
+        
+        // Smooth scroll untuk semua anchor link
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if(targetId === "#") return;
+                const targetEl = document.querySelector(targetId);
+                if(targetEl) {
+                    e.preventDefault();
+                    targetEl.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+    <!-- Catatan penting: Ganti foto di bagian hero dengan foto pribadi Anda -->
+    <!-- Ubah src di img tag pada .avatar-border, misal: src="foto-saya.jpg" -->
+    <!-- Anda bisa mengganti teks, email, dan nomor telepon sesuai keinginan -->
+</body>
+</html>
